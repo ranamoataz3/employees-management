@@ -1,0 +1,5 @@
+.hidescroll {
+    /* height: calc(100vh - var(--nav-height)); */
+    overflow: hidden;
+  }
+  
