@@ -50,9 +50,10 @@
 }
 
 .mobilenav {
+  padding: 10px;
   position: fixed;
   inset: 0;
-  top: 140px;
+  top: 110px;
   border-top: 1px solid 1px solid var(--color-border);
   overflow: hidden;
   background-color: var(--color-neutral);
@@ -97,6 +98,11 @@
 
   .menucontainer {
     display: none;
+  }
+
+  .brandcontainer img {
+    width: 80px;
+    height: 80px;
   }
 }
 

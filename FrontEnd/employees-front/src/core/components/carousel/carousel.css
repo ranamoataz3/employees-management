@@ -25,3 +25,9 @@
   border-inline-width: 5px 0 !important;
   border-block-width: 5px 0 !important;
 }
+
+@media screen and (max-width: 760px) {
+  .carocontainer {
+    height: calc(65vh - 110px);
+  }
+}
