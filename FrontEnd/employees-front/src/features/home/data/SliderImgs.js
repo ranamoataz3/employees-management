@@ -12,14 +12,16 @@ const imgs = [
     // src: ""
     src: require("E:/Companies/KIAN/Task/employees-management/FrontEnd/employees-front/src/core/assets/imgs/sliderIMG2.png"),
   },
-//   {
-//     id: 3,
-//     src: require(path + "sliderIMG3.jpg"),
-//   },
-//   {
-//     id: 4,
-//     src: require(path + "sliderIMG4.jpg"),
-//   },
+  {
+    id: 3,
+    // src: ""
+    src: require("E:/Companies/KIAN/Task/employees-management/FrontEnd/employees-front/src/core/assets/imgs/sliderIMG3.jpg"),
+  },
+  {
+    id: 4,
+    // src: ""
+    src: require("E:/Companies/KIAN/Task/employees-management/FrontEnd/employees-front/src/core/assets/imgs/sliderIMG4.jpg"),
+  },
 ];
 
 export default imgs;
