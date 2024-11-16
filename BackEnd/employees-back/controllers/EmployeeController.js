@@ -26,6 +26,8 @@ const deleteEmployee = async (req, res) => {
 const addEmployee = async (req, res) => {
     try {
         const employee = new Employees(req.body);
+        console.log("add employee request",req.body);
+        console.log(employee);
         await employee.save();
         res.status(200).send(employee);
     } catch (error) {
