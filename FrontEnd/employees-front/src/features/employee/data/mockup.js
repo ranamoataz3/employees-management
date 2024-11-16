@@ -1,5 +1,6 @@
-const Employees = {
+let Employees = {
   columns: [
+    { title: "#", dataIndex: "key" },
     { title: "Name", dataIndex: "Name" },
     { title: "Email", dataIndex: "Email" },
     { title: "Phone", dataIndex: "Phone" },
@@ -9,7 +10,7 @@ const Employees = {
   ],
   data: [
     {
-      key: "1",
+      id: "1",
       Name: "John Doe",
       Email: "johndoe@gmail.com",
       Phone: "1234567890",
@@ -18,7 +19,7 @@ const Employees = {
       Salary: "100000",
     },
     {
-      key: "2",
+      id: "2",
       Name: "Jane Doe",
       Email: "jane123@gmail.com",
       Phone: "0987654321",
@@ -27,7 +28,7 @@ const Employees = {
       Salary: "150000",
     },
     {
-      key: "3",
+      id: "3",
       Name: "John Smith",
       Email: "smitho@gmail.com",
       Phone: "1234567890",
@@ -36,7 +37,7 @@ const Employees = {
       Salary: "100000",
     },
     {
-      key: "4",
+      id: "4",
       Name: "Joooo Doe",
       Email: "johndoe@gmail.com",
       Phone: "1234567890",
@@ -45,7 +46,7 @@ const Employees = {
       Salary: "100000",
     },
     {
-      key: "5",
+      id: "5",
       Name: "Jeeeeeee",
       Email: "jane123@gmail.com",
       Phone: "0987654321",
@@ -54,7 +55,7 @@ const Employees = {
       Salary: "150000",
     },
     {
-      key: "6",
+      id: "6",
       Name: "mithoo",
       Email: "smitho@gmail.com",
       Phone: "1234567890",
@@ -63,7 +64,7 @@ const Employees = {
       Salary: "100000",
     },
     {
-      key: "7",
+      id: "7",
       Name: "Doeeeee",
       Email: "johndoe@gmail.com",
       Phone: "1234567890",
