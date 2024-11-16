@@ -39,7 +39,7 @@ const TableComponent = ({
         render: (_, record) => (
           <Popconfirm
             title="Sure to delete?"
-            onConfirm={() => onDelete(record.key, data)}
+            onConfirm={() => onDelete(record.key)}
           >
             {/* <Button btnclassName="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
               Delete

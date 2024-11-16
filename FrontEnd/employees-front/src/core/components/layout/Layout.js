@@ -1,6 +1,6 @@
 
 import NavBar from "./nav/ui/NavBar";
-import { useState , useEffect } from "react";
+import { useState} from "react";
 import styles from "./layout.module.css";
 
 const Layout = ({ children }) => {

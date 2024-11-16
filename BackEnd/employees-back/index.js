@@ -3,7 +3,9 @@ const express = require("express");
 var app = express();
 const mongoose = require("mongoose");
 const mongo = require("mongodb");
-const bodyParser=require('body-parser');
+const bodyParser = require("body-parser");
+const session = require("express-session");
+const cors = require("cors");
 
 // Importing the routes
 const employeeRouter = require("./routes/employeeRoute");
@@ -13,8 +15,15 @@ const PORT = 3005;
 const dbURL =
   "mongodb+srv://rana3:rana12345678@kiantask.z9ehd.mongodb.net/preInterview?retryWrites=true&w=majority&appName=kiantask";
 
-
 app.use(bodyParser.json());
+app.use(cors());
+app.use(
+  session({
+    secret: "secrethash",
+    resave: false,
+    saveUninitialized: true.valueOf,
+  })
+);
 // connecting to the database
 const connectToDatabase = async () => {
   try {

@@ -1,5 +1,3 @@
-const path = "../../../core/assets/imgs/";
-
 const imgs = [
   {
     id: 1,

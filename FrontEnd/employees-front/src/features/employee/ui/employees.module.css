@@ -3,3 +3,10 @@
     padding: 32px;
     overflow-x: scroll;
 }
+
+.noData
+{
+    text-align: center;
+    margin-top: 32px;
+    
+}

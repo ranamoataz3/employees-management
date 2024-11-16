@@ -1,12 +1,13 @@
 let Employees = {
   columns: [
     { title: "#", dataIndex: "key" },
-    { title: "Name", dataIndex: "Name" },
-    { title: "Email", dataIndex: "Email" },
-    { title: "Phone", dataIndex: "Phone" },
-    { title: "Department", dataIndex: "Department" },
-    { title: "Position", dataIndex: "Position" },
-    { title: "Salary", dataIndex: "Salary" },
+    { title: "First Name", dataIndex: "firstName" },
+    { title: "Last Name", dataIndex: "lastName" },
+    { title: "Email", dataIndex: "email" },
+    { title: "Phone", dataIndex: "phoneNumber" },
+    { title: "Department", dataIndex: "department" },
+    { title: "Position", dataIndex: "position" },
+    { title: "Salary", dataIndex: "salary" },
   ],
   data: [
     {
