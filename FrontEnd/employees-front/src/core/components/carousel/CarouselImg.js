@@ -2,7 +2,7 @@ import { Carousel, ConfigProvider } from "antd";
 import React from "react";
 import "./carousel.css";
 
-const CarouselImg = ({ images }) => {
+const CarouselImg = ({ data }) => {
   return (
     <ConfigProvider
       theme={{
@@ -10,15 +10,15 @@ const CarouselImg = ({ images }) => {
           Carousel: {
             arrowSize: 60,
             colorBgContainer: "#4ab2b6",
-            dotWidth: 32,
-            dotActiveWidth: 64,
-            dotHeight: 5,
+            dotWidth: 8,
+            dotActiveWidth: 8,
+            dotHeight: 8,
           },
         },
       }}
     >
       <Carousel autoplay arrows>
-        {images.map((img, index) => (
+        {data.map((img, index) => (
           <div key={index} className="carocontainer">
             <img src={img.src} alt="img" />
           </div>
