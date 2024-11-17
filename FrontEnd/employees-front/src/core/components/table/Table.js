@@ -17,12 +17,11 @@ const TableComponent = ({
   const DefinecolumnsWithActions = () => {
     let newcolumns = [...columnsWithActions];
     if (onEdit) {
-      let newcolumns = [...columnsWithActions];
       newcolumns.push({
         title: "Edit Action",
         dataIndex: "Edit Action",
         render: (_, record) => (
-          <Button color="primary" variant="filled" >
+          <Button color="primary" variant="filled" onClick={() => onEdit(record.key)} >
             Edit
           </Button>
         ),

@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const cors = require("cors");
 
+
 // Importing the routes
 const employeeRouter = require("./routes/employeeRoute");
 
@@ -40,7 +41,7 @@ const connectToDatabase = async () => {
       console.log("Server error", error);
     });
   } catch (error) {
-    console.log("Error in connecting to the database");
+    console.log(error);
   }
 };
 

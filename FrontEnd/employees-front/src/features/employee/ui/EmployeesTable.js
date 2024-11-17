@@ -5,10 +5,9 @@ import styles from "./employees.module.css";
 import Loader from "../../../core/components/loader/Loader";
 import { getEmployees, deleteEmployee } from "../data/requests";
 
-const EmployeesTable = ({ onEdit }) => {
+const EmployeesTable = ({ open, setOpen, setEmployee }) => {
   const [employeesData, setEmployeesData] = useState([]);
   const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     getEmployees(setEmployeesData, setLoading);
@@ -25,6 +24,21 @@ const EmployeesTable = ({ onEdit }) => {
     deleteEmployee(employee._id, setEmployeesData, setLoading);
   };
 
+  const onEdit = (key) => {
+    // console.log("Edit Employee with key: ", key);
+    let employee = employeesData.find((employee) => employee.key === key);
+    // employee is the all fields except key
+
+    // console.log("Employee: ", employee);
+
+    // Use destructuring to exclude the `key` field
+    const { key: _, ...employeeWithoutKey } = employee;
+
+    // console.log(employeeWithoutKey);
+    setEmployee(employeeWithoutKey);
+    setOpen(true);
+  };
+
   return (
     // check if loading
     <>
@@ -36,9 +50,9 @@ const EmployeesTable = ({ onEdit }) => {
               <div className={styles.container}>
                 <TableComponent
                   onDelete={onDelete}
+                  onEdit={onEdit}
                   columns={Employees.columns}
                   data={employeesData}
-                  onSelectChange={onSelectChange}
                 />
               </div>
             ) : (
@@ -50,6 +64,7 @@ const EmployeesTable = ({ onEdit }) => {
           <div className={styles.container}>
             <TableComponent
               onDelete={onDelete}
+              onEdit={onEdit}
               columns={Employees.columns}
               data={employeesData}
             />
