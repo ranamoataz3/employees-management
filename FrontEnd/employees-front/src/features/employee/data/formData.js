@@ -10,7 +10,6 @@ const FormData = [
     ],
     type: "input",
     placeholder: "Enter first name",
-    defaultValue: "RR",
     onchange: null,
   },
   {
@@ -24,7 +23,6 @@ const FormData = [
     ],
     type: "input",
     placeholder: "Enter last name",
-    defaultValue: "",
     onchange: null,
   },
   {
@@ -38,7 +36,6 @@ const FormData = [
     ],
     type: "input",
     placeholder: "Enter email",
-    defaultValue: "",
     onchange: null,
   },
   {
@@ -52,7 +49,6 @@ const FormData = [
     ],
     type: "input",
     placeholder: "Enter phone",
-    defaultValue: "",
     onchange: null,
   },
   {
@@ -66,7 +62,6 @@ const FormData = [
     ],
     type: "select",
     placeholder: "Select department",
-    defaultValue: "",
     onchange: null,
     options: [
       {
@@ -94,7 +89,6 @@ const FormData = [
     ],
     type: "input",
     placeholder: "Enter position",
-    defaultValue: "",
     onchange: null,
   },
   {
@@ -108,7 +102,6 @@ const FormData = [
     ],
     type: "number",
     placeholder: "Enter salary",
-    defaultValue: "",
     onchange: null,
   },
 ];

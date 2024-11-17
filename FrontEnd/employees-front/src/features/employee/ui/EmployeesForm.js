@@ -7,44 +7,25 @@ import Loader from "../../../core/components/loader/Loader";
 
 const EmployeesForm = ({ open, setOpen, edit, data }) => {
   const [form] = Form.useForm();
-  const [loading, setLoading] = useState(true);
-
-  const [finalData, setFinalData] = useState(FormData);
+  const [loading, setLoading] = useState(false);
 
   //handle add or edit
   const handleEdit = () => {
     if (edit) {
-      let tempdata = FormData.map((item) => {
-        if (item.name === "firstName") {
-          item.defaultValue = data.firstName;
-        }
-        if (item.name === "lastName") {
-          item.defaultValue = data.lastName;
-        }
-        if (item.name === "email") {
-          item.defaultValue = data.email;
-        }
-        if (item.name === "phoneNumber") {
-          item.defaultValue = data.phoneNumber;
-        }
-        if (item.name === "department") {
-          item.defaultValue = data.department;
-        }
-        if (item.name === "position") {
-          item.defaultValue = data.position;
-        }
-        if (item.name === "salary") {
-          item.defaultValue = data.salary;
-        }
-        return item;
+      // set form values
+      form.setFieldsValue({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phoneNumber: data.phoneNumber,
+        department: data.department,
       });
-      setFinalData(tempdata);
     }
     setLoading(false);
   };
 
   useEffect(() => {
-    handleEdit();
+    // handleEdit();
   }, [edit, data]);
 
   const handleSubmit = (values) => {
@@ -64,9 +45,10 @@ const EmployeesForm = ({ open, setOpen, edit, data }) => {
       >
         {!loading ? (
           <FormComponent
-            fields={finalData}
+            fields={FormData}
             form={form}
             onFormSubmit={handleSubmit}
+            intialValues={edit ? data : null}
           />
         ) : (
           <Loader color="#14b8a6" />

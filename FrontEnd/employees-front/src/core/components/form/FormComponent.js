@@ -1,5 +1,6 @@
 import "./form.css";
 import { Button, Form, Input, InputNumber, Select } from "antd";
+import { useEffect } from "react";
 
 const formItemLayout = {
   labelCol: {
@@ -26,7 +27,6 @@ function FormItemWrapper(props) {
       return (
         <Select
           placeholder={props.placeholder}
-          defaultValue={props.defaultValue}
           onChange={props.onChange}
           options={props.options}
         />
@@ -35,41 +35,39 @@ function FormItemWrapper(props) {
       return (
         <InputNumber
           placeholder={props.placeholder}
-          defaultValue={props.defaultValue}
           onChange={props.onChange}
         />
       );
     default:
       return (
-        <Input
-          placeholder={props.placeholder}
-          defaultValue={props.defaultValue}
-          onChange={props.onChange}
-        />
+        <Input placeholder={props.placeholder} onChange={props.onChange} />
       );
   }
 }
 
-const FormComponent = ({ fields, form, onFormSubmit }) => {
-  console.log("Fields:", fields);
-
+const FormComponent = ({ fields, form, onFormSubmit, intialValues }) => {
   const onFinish = (values) => {
     // console.log("Form Values:", values);
     onFormSubmit(values);
   };
+
+  //handle add or edit
+  const handleEdit = () => {
+    form.setFieldsValue(intialValues);
+    console.log("Initial Values:", intialValues);
+  };
+
+  useEffect(() => {
+    handleEdit();
+  }, [intialValues]);
 
   return (
     <Form
       {...formItemLayout}
       form={form}
       variant="filled"
-      // style={{
-      //   maxWidth: 600,
-      // }}
-      // initialValues={{
-      //   variant: "filled",
-      // }}
       onFinish={onFinish}
+      // initialValues={intialValues}
     >
       {fields.map((field) => {
         return (
