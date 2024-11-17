@@ -4,34 +4,29 @@ import ModalComponent from "../../../core/components/modal/ModalComponent";
 import { Form } from "antd";
 import { useEffect, useState } from "react";
 import Loader from "../../../core/components/loader/Loader";
+import { editEmployee, getEmployees } from "../data/requests";
 
-const EmployeesForm = ({ open, setOpen, edit, data }) => {
+const EmployeesForm = ({
+  open,
+  setOpen,
+  edit,
+  data,
+  setData,
+  loading,
+  setLoading,
+  setEmployeesData,
+}) => {
   const [form] = Form.useForm();
-  const [loading, setLoading] = useState(false);
-
-  //handle add or edit
-  const handleEdit = () => {
-    if (edit) {
-      // set form values
-      form.setFieldsValue({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        phoneNumber: data.phoneNumber,
-        department: data.department,
-      });
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    // handleEdit();
-  }, [edit, data]);
+  const [openModal, setOpenModal] = useState(false);
+  const [response, setResponse] = useState("");
 
   const handleSubmit = (values) => {
-    console.log("Form Values:", values);
-    setOpen(false);
-    // clear form fields
+    console.log("Form Values in handle submit:", values);
+    console.log("data in handle submit:", data);
+
+    editEmployee(data._id, values, setResponse);
+    setOpenModal(true);
+    setData({});
     form.resetFields();
   };
 
@@ -39,17 +34,35 @@ const EmployeesForm = ({ open, setOpen, edit, data }) => {
     <>
       <ModalComponent
         open={open}
-        setOpen={setOpen}
         title={edit ? "Edit Employee" : "Add Employee"}
-        handleOk={() => form.submit()}
+        handleOk={() => {
+          if (!openModal) {
+            form.submit();
+          } else {
+            setOpenModal(false);
+            setLoading(true);
+            getEmployees(setEmployeesData, setLoading);
+            setOpen(false);
+          }
+        }}
+        handleCancel={() => {
+          setOpenModal(false);
+          setLoading(true);
+          getEmployees(setEmployeesData, setLoading);
+          setOpen(false);
+        }}
       >
         {!loading ? (
-          <FormComponent
-            fields={FormData}
-            form={form}
-            onFormSubmit={handleSubmit}
-            intialValues={edit ? data : null}
-          />
+          !openModal && open ? (
+            <FormComponent
+              fields={FormData}
+              form={form}
+              onFormSubmit={handleSubmit}
+              intialValues={edit ? data : {}}
+            />
+          ) : (
+            <h1>{response}</h1>
+          )
         ) : (
           <Loader color="#14b8a6" />
         )}

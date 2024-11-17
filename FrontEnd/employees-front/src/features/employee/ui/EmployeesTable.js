@@ -4,38 +4,34 @@ import React, { useState, useEffect } from "react";
 import styles from "./employees.module.css";
 import Loader from "../../../core/components/loader/Loader";
 import { getEmployees, deleteEmployee } from "../data/requests";
+import ModalComponent from "../../../core/components/modal/ModalComponent";
 
-const EmployeesTable = ({ open, setOpen, setEmployee }) => {
-  const [employeesData, setEmployeesData] = useState([]);
-  const [loading, setLoading] = useState(true);
+const EmployeesTable = ({
+  open,
+  setOpen,
+  setEmployee,
+  loading,
+  setLoading,
+  employeesData,
+  setEmployeesData,
+}) => {
+  const [openModal, setOpenModal] = useState(false);
+  const [response, setResponse] = useState("");
 
   useEffect(() => {
     getEmployees(setEmployeesData, setLoading);
   }, []);
 
-  // const onSelectChange = (newSelectedEmployeesIDs) => {
-  //   console.log("selectedRowKeys changed: ", newSelectedEmployeesIDs);
-  //   setSelectedEmployeesIDs(newSelectedEmployeesIDs);
-  // };
-
   const onDelete = (key) => {
-    setLoading(true);
+    // setLoading(true);
     const employee = employeesData.find((employee) => employee.key === key);
-    deleteEmployee(employee._id, setEmployeesData, setLoading);
+    deleteEmployee(employee._id, setResponse);
+    setOpenModal(true);
   };
 
   const onEdit = (key) => {
-    // console.log("Edit Employee with key: ", key);
     let employee = employeesData.find((employee) => employee.key === key);
-    // employee is the all fields except key
-
-    // console.log("Employee: ", employee);
-
-    // Use destructuring to exclude the `key` field
-    const { key: _, ...employeeWithoutKey } = employee;
-
-    // console.log(employeeWithoutKey);
-    setEmployee(employeeWithoutKey);
+    setEmployee(employee);
     setOpen(true);
   };
 
@@ -69,6 +65,25 @@ const EmployeesTable = ({ open, setOpen, setEmployee }) => {
               data={employeesData}
             />
           </div>
+
+          {openModal && (
+            <ModalComponent
+              open={openModal}
+              title="Delete Employee"
+              handleOk={() => {
+                setLoading(true);
+                setOpenModal(false);
+                getEmployees(setEmployeesData, setLoading);
+              }}
+              handleCancel={() => {
+                setLoading(true);
+                setOpenModal(false);
+                getEmployees(setEmployeesData, setLoading);
+              }}
+            >
+              <h1>{response}</h1>
+            </ModalComponent>
+          )}
         </>
       ) : (
         <Loader color="#14b8a6" />

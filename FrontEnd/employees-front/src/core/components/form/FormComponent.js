@@ -29,6 +29,7 @@ function FormItemWrapper(props) {
           placeholder={props.placeholder}
           onChange={props.onChange}
           options={props.options}
+          defaultValue={props.defaultValue}
         />
       );
     case "number":
@@ -36,30 +37,46 @@ function FormItemWrapper(props) {
         <InputNumber
           placeholder={props.placeholder}
           onChange={props.onChange}
+          defaultValue={props.defaultValue}
         />
       );
     default:
       return (
-        <Input placeholder={props.placeholder} onChange={props.onChange} />
+        <Input
+          placeholder={props.placeholder}
+          onChange={props.onChange}
+          defaultValue={props.defaultValue}
+        />
       );
   }
 }
 
-const FormComponent = ({ fields, form, onFormSubmit, intialValues }) => {
+const FormComponent = ({
+  fields,
+  form,
+  onFormSubmit,
+  intialValues,
+
+}) => {
   const onFinish = (values) => {
-    // console.log("Form Values:", values);
+    console.log("Form Values inside form component:", values);
     onFormSubmit(values);
   };
 
-  //handle add or edit
-  const handleEdit = () => {
-    form.setFieldsValue(intialValues);
-    console.log("Initial Values:", intialValues);
-  };
-
-  useEffect(() => {
-    handleEdit();
-  }, [intialValues]);
+  let clonedFields = [];
+  if (intialValues) {
+    clonedFields = fields.map((field) => ({
+      ...field,
+      defaultValue: intialValues[field.name],
+    }));
+    console.log("fields after edition:", clonedFields);
+  } else {
+    clonedFields = fields.map((field) => ({
+      ...field,
+      defaultValue: "",
+    }));
+    console.log("fields without addition:", clonedFields);
+  }
 
   return (
     <Form
@@ -67,11 +84,16 @@ const FormComponent = ({ fields, form, onFormSubmit, intialValues }) => {
       form={form}
       variant="filled"
       onFinish={onFinish}
-      // initialValues={intialValues}
+      initialValues={intialValues}
     >
-      {fields.map((field) => {
+      {clonedFields.map((field, index) => {
         return (
-          <Form.Item label={field.label} name={field.name} rules={field.rules}>
+          <Form.Item
+            key={index}
+            label={field.label}
+            name={field.name}
+            rules={field.rules}
+          >
             <FormItemWrapper {...field} />
           </Form.Item>
         );
