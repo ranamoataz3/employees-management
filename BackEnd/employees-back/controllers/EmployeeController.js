@@ -1,4 +1,5 @@
 const Employees = require("../models/Employees");
+const Departments = require("../Data");
 
 // Get all employees
 const getEmployees = async (req, res) => {
@@ -24,6 +25,17 @@ const deleteEmployee = async (req, res) => {
     };
 
 const addEmployee = async (req, res) => {
+
+    // validate request
+    if (!req.body) {
+        return res.status(400).send("Request body is empty");
+    }
+
+    // validate department
+    if (!Departments.includes(req.body.department)) {
+        return res.status(400).send("Invalid department");
+    }
+
     try {
         const employee = new Employees(req.body);
         console.log("add employee request",req.body);

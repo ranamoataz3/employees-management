@@ -33,6 +33,10 @@ const FormData = [
         required: true,
         message: "Please enter email",
       },
+      {
+        type: "email", // Built-in Ant Design email validation
+        message: "The input is not a valid email!",
+      },
     ],
     type: "input",
     placeholder: "Enter email",
@@ -45,6 +49,10 @@ const FormData = [
       {
         required: true,
         message: "Please enter phone",
+      },
+      {
+        pattern: new RegExp(/^01[0125][0-9]{8}$/), // Example for a 10-digit phone number
+        message: "Phone number must be 11 digits starts with 010/011/012/015!",
       },
     ],
     type: "input",
@@ -75,6 +83,10 @@ const FormData = [
       {
         value: "Finance",
         label: "Finance",
+      },
+      {
+        value: "Marketing",
+        label: "Marketing",
       },
     ],
   },
