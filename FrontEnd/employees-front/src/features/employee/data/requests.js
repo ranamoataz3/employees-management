@@ -46,3 +46,14 @@ export async function editEmployee(id, employee, setResponse) {
     setResponse("Error Happened in Editing Employee");
   }
 }
+
+export async function addEmployee(employee, setResponse) {
+  try {
+    const response = await axios.post(routes.addEmployee, employee);
+    console.log(response);
+    setResponse("Employee Added Successfully");
+  } catch (err) {
+    console.log(err);
+    setResponse("Error Happened in Adding Employee");
+  }
+}

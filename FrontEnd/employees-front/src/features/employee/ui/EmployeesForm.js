@@ -4,7 +4,7 @@ import ModalComponent from "../../../core/components/modal/ModalComponent";
 import { Form } from "antd";
 import { useEffect, useState } from "react";
 import Loader from "../../../core/components/loader/Loader";
-import { editEmployee, getEmployees } from "../data/requests";
+import { editEmployee, getEmployees, addEmployee } from "../data/requests";
 
 const EmployeesForm = ({
   open,
@@ -24,7 +24,11 @@ const EmployeesForm = ({
     console.log("Form Values in handle submit:", values);
     console.log("data in handle submit:", data);
 
-    editEmployee(data._id, values, setResponse);
+    if (!edit) {
+      addEmployee(values, setResponse);
+    } else {
+      editEmployee(data._id, values, setResponse);
+    }
     setOpenModal(true);
     setData({});
     form.resetFields();
